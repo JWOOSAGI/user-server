@@ -7,8 +7,8 @@ interface ILinkButton {
     path: string
 }
 
-export default function LinkButton({ id, title, path }: ILinkButton) {
-    return (<li>
+export default function LinkButton({ id, title, path }: ILinkButton) { // ILinkButton 처럼 id, title, path만 들어오게 제약을 건다.
+    return (
         <Link key={id} href={`${path}`}
         className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent
                     md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500
@@ -16,7 +16,7 @@ export default function LinkButton({ id, title, path }: ILinkButton) {
                     dark:border-gray-700" aria-current="page">
                         {title}
     </Link>
-    </li>)
+    )
 }
 
 export const linkButtonTitles = [

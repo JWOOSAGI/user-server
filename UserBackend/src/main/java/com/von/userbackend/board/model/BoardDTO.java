@@ -21,7 +21,7 @@ public class BoardDTO {
     private Long id;
     private String title;
     private String description;
-    private List<Article> articles ;
+//    private List<Article> articles ;
     private String regDate;
     private String modDate;
 }

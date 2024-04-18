@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 @Builder
 @Log4j2
 @Data // getter, settter, toString
-
 @Component
 public class ArticleDTO  {
     private Long id;

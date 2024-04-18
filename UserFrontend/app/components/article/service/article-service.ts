@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IArticle } from "../model/article";
-import { findAllArticlesAPI, findArticleByIdAPI, findMyListAPI} from "./article-api";
+import { findAllArticlesAPI, findArticleByIdAPI, findMyListAPI, saveArticleAPI} from "./article-api";
 import axios from "axios";
 import { API } from "@/app/components/common/enums/API";
 import AxiosConfig, { instance } from "@/app/components/common/configs/axios-config";
@@ -33,4 +33,9 @@ export const findArticleById: any = createAsyncThunk(
 export const findMyList: any = createAsyncThunk( 
     'articles/findMyList',                      
     async (id:number) => (await findMyListAPI(id))
+)
+
+export const saveArticle: any = createAsyncThunk(
+    'articles/save',
+    async (article : IArticle) => await saveArticleAPI(article)
 )

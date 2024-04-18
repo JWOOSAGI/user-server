@@ -14,8 +14,8 @@ import lombok.*;
 @Builder
 public class Article extends BaseEntity {
     @Id
-    @Column(name="id",nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String content;
@@ -30,9 +30,8 @@ public class Article extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User writer;
 
-    public static Article of(Long id,String title,String content){
+    public static Article of(String title,String content){
         Article article = new Article();
-        article.id = id;
         article.title = title;
         article.content = content;
 

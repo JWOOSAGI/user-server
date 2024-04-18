@@ -15,14 +15,13 @@ import java.util.List;
 public class Board extends BaseEntity {
 
     @Id
-    @Column(name = "id",nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
     private String title;
     private String description;
 
-    @OneToMany(mappedBy = "board" , cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "board" , cascade = CascadeType.REMOVE)
     private List<Article> articles;
 }

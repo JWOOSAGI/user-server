@@ -17,7 +17,6 @@ public class User extends BaseEntity {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String username;
     private String password;
     private String passwordConfirm;
@@ -27,7 +26,7 @@ public class User extends BaseEntity {
     private String job;
 
 
-    @OneToMany(mappedBy = "writer", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "writer", cascade = CascadeType.REMOVE)
     private List<Article> article;
 
     @Builder(builderMethodName = "builder")

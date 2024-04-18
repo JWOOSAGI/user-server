@@ -27,9 +27,10 @@ import java.util.Optional;
 public class ArticleController {
     private final ArticleServiceImpl service;
 
-    @PostMapping( "")
-    public ResponseEntity<MessengerVO> save(Pageable pageable) throws SQLException {
-        return ResponseEntity.ok(new MessengerVO());
+    @PostMapping( "/save")
+    public ResponseEntity<MessengerVO> save(@RequestBody ArticleDTO dto) {
+        log.info("입력받은 정보 : {}", dto );
+        return ResponseEntity.ok(service.save(dto));
     }
     @DeleteMapping(path = "/delete")
     public ResponseEntity<MessengerVO> deleteById(@RequestParam Long id)  {
@@ -55,7 +56,7 @@ public class ArticleController {
     public ResponseEntity<MessengerVO> existById(Pageable pageable) throws SQLException {
         return ResponseEntity.ok(new MessengerVO());
     }
-    //id를 특정지을 수 없을 때는 @RequestParam("id") 로 명시
+//    id를 특정지을 수 없을 때는 @RequestParam("id") 로 명시
     @GetMapping("/myList")
     public ResponseEntity<List<ArticleDTO>> myList(@RequestParam("id") Long id){
         return ResponseEntity.ok(service.myList(id));

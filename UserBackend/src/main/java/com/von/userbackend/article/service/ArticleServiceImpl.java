@@ -3,6 +3,7 @@ package com.von.userbackend.article.service;
 
 import com.von.userbackend.article.model.ArticleDTO;
 import com.von.userbackend.article.repository.ArticleRepository;
+import com.von.userbackend.board.repository.BoardRepository;
 import com.von.userbackend.common.component.MessengerVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,12 +15,13 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService {
     private final ArticleRepository repo;
+    private final BoardRepository boardRepository;
 
     @Override
-    public MessengerVO save(ArticleDTO articleDTO) {
-        return null;
+    public MessengerVO save(ArticleDTO t) {
+        entityToDTO((repo.save(dtoToEntity(t))));
+        return new MessengerVO();
     }
-
     @Override
     public MessengerVO deleteById(Long id) {
         repo.deleteById(id);
@@ -50,6 +52,7 @@ public class ArticleServiceImpl implements ArticleService {
     public boolean existsById(Long id) {
         return false;
     }
+
 
 //    @Override
 //    public List<ArticleDTO> myList(Long id) {

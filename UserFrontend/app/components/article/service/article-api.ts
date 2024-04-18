@@ -1,4 +1,5 @@
 import { instance } from "@/app/components/common/configs/axios-config"
+import { IArticle } from "../model/article"
 
 export const findAllArticlesAPI = async (page: number) =>{
     try{
@@ -48,4 +49,14 @@ export const findMyListAPI = async (id:number) =>{
         console.log(error)
         return error
     }   
+}
+export const saveArticleAPI = async (article:IArticle) =>{
+    try{
+        const response = await instance.post('/article/save',article)
+        //Java 에서 Messenger.message에 값을 담음
+        return response.data
+    }catch(error){
+        console.log(error)
+        return error
+    }
 }
