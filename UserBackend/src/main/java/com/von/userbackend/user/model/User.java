@@ -24,6 +24,7 @@ public class User extends BaseEntity {
     private String phone;
     private String email;
     private String job;
+    private String token;
 
 
     @OneToMany(mappedBy = "writer", cascade = CascadeType.REMOVE)

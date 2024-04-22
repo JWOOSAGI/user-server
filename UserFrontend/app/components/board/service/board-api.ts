@@ -19,6 +19,7 @@ export const findBoardByIdAPI = async (id : number) => {
         const response = await instance.get('/boards/detail',{
             params : {id}
         })
+        console.log(' 게시판 ID 리턴 ...'+`${JSON.stringify(response.data)}`)
         return response.data
     } catch (error) {
         return error

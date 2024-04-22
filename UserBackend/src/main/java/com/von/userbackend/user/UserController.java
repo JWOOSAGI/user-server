@@ -68,4 +68,16 @@ public class UserController {
         log.info("입력받은 정보 : {}", param );
         return ResponseEntity.ok(service.login(param));
     }
+
+    @GetMapping(path = "/exists-username")
+    public ResponseEntity<MessengerVO> findByUsername(@RequestParam("username") String username) {
+        log.info("입력받은 정보 : {}", username);
+        return ResponseEntity.ok(service.findByUsername(username));
+    }
+
+//    @PostMapping(path = "/exists")
+//    public ResponseEntity<MessengerVO> exists(@RequestBody UserDTO param ) {
+//        log.info("입력받은 정보 : {}", param );
+//        return ResponseEntity.ok(service.exists(param));
+//    }
 }

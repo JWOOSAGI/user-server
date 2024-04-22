@@ -49,3 +49,27 @@ export const loginUserAPI = async (user:IUser) =>{
         return error
     }
 }
+
+export const existsUsernameAPI = async (username: string) =>{
+    try{
+        const response = await instance.get('/users/exists-username',{
+            params: {username}
+        })
+        return response.data
+
+    }catch(error){
+        console.log(error)
+        return error
+    }
+}
+export const logoutAPI
+= async () =>{
+    try{
+        const response = await instance.get('/users/logout',{params: {}})
+        console.log('로그아웃 결과 : '+response)
+        return response.data
+    }catch(error){
+        console.log(error)
+        return error
+    }
+}

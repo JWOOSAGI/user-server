@@ -1,4 +1,4 @@
-package com.von.userbackend.common.component;
+package com.von.userbackend.common.component.pagination;
 
 import com.von.userbackend.article.model.ArticleDTO;
 import lombok.AllArgsConstructor;

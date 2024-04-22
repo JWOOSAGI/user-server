@@ -1,6 +1,6 @@
 package com.von.userbackend.user.service;
 
-import com.von.userbackend.common.component.JwtProvider;
+import com.von.userbackend.common.component.security.JwtProvider;
 import com.von.userbackend.common.component.MessengerVO;
 import com.von.userbackend.user.model.User;
 import com.von.userbackend.user.model.UserDTO;
@@ -8,7 +8,9 @@ import com.von.userbackend.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -87,14 +89,25 @@ public class UserServiceImpl implements UserService {
     }
 
     //단일책임원칙(SRP)에 따라 아이디 존재여부를 프론트에서 먼저 판단하고, 넘어옴 (시큐리티)
+    @Transactional
     @Override
-    public MessengerVO login(UserDTO param) {
-        boolean flag = repository.findByUsername(param.getUsername()).get().getPassword().equals(param.getPassword());
+    public MessengerVO login(UserDTO dto) {
+        User user = repository.findByUsername(dto.getUsername()).get();
+        Long userId = user.getId();
+        String accessToken = jwtProvider.createToken(entityToDTO(user));
+        boolean flag = dto.getPassword().equals(dto.getPassword());
+
+        // 토큰을 각 섹션(Header, Payload, Signature)으로 분할
+        jwtProvider.getPayload(accessToken);
 
         return MessengerVO.builder()
                 .message(flag ? "SUCCESS" : "FAILURE")
-                .token(flag ? jwtProvider.createToken(param) : "None")
+                .accessToken(flag ? accessToken : "None")
                 .build();
 
+    }
+
+    public MessengerVO findByUsername(String username) {
+        return MessengerVO.builder().message(repository.findByUsername(username).isPresent() ? "True" : "False").build();
     }
 }

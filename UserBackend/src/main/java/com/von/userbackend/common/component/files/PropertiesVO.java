@@ -1,4 +1,4 @@
-package com.von.userbackend.common.component;
+package com.von.userbackend.common.component.files;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

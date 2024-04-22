@@ -6,6 +6,6 @@ export interface IArticle{
     boardId? : number
     regDate? : string 
     modDate? : string
-    json?: IArticle
+    json?: {}
     array?: IArticle[]
 }

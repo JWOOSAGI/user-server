@@ -18,4 +18,5 @@ public class UserDTO  {
     private String job;
     private String regDate;
     private String modDate;
+    private String token;
 }
