@@ -63,17 +63,15 @@ public class UserController {
         return ResponseEntity.ok(service.findUsersByName(param.getName()));
     }
 
-    @PostMapping(path = "/login")
-    public ResponseEntity<MessengerVO> login(@RequestBody UserDTO param ) {
-        log.info("입력받은 정보 : {}", param );
-        return ResponseEntity.ok(service.login(param));
+    @GetMapping("/logout")
+    public ResponseEntity<Boolean> logout(@RequestHeader("Authorization") String accessToken){
+        log.info("logout request : {}", accessToken);
+        Long id = 1L;
+        Boolean flag= service.logout(id);
+        return ResponseEntity.ok(flag);
+
     }
 
-    @GetMapping(path = "/exists-username")
-    public ResponseEntity<MessengerVO> findByUsername(@RequestParam("username") String username) {
-        log.info("입력받은 정보 : {}", username);
-        return ResponseEntity.ok(service.findByUsername(username));
-    }
 
 //    @PostMapping(path = "/exists")
 //    public ResponseEntity<MessengerVO> exists(@RequestBody UserDTO param ) {

@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
         boolean flag = dto.getPassword().equals(dto.getPassword());
 
         // 토큰을 각 섹션(Header, Payload, Signature)으로 분할
-        jwtProvider.getPayload(accessToken);
+        jwtProvider.printPayload(accessToken);
 
         return MessengerVO.builder()
                 .message(flag ? "SUCCESS" : "FAILURE")
@@ -107,7 +107,13 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public Boolean logout(Long id) {
+         throw new UnsupportedOperationException("Unimplemented method 'logout'");
+    }
+
     public MessengerVO findByUsername(String username) {
         return MessengerVO.builder().message(repository.findByUsername(username).isPresent() ? "True" : "False").build();
     }
+
 }

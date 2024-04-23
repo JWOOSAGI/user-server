@@ -1,9 +1,9 @@
-import { instance } from "@/app/components/common/configs/axios-config"
+import instance from "../../common/configs/axios-config"
 import { IArticle } from "../model/article"
 
 export const findAllArticlesAPI = async (page: number) =>{
     try{
-        const response = await instance.get('/article/list',{
+        const response = await instance().get('/article/list',{
             params: {page, limit: 10}
         })
         return response.data
@@ -16,7 +16,7 @@ export const findAllArticlesAPI = async (page: number) =>{
 
 export const findArticleByIdAPI = async (id: number) =>{
     try{
-        const response = await instance.get('/article/detail',{
+        const response = await instance().get('/article/detail',{
             params: {id}
         })
         return response.data
@@ -29,7 +29,7 @@ export const findArticleByIdAPI = async (id: number) =>{
 
 export const getUserAPI = async (id: number) =>{
     try{
-        const response = await instance.get('/',{
+        const response = await instance().get('/',{
             params: {id}
         })
         return response.data
@@ -41,7 +41,7 @@ export const getUserAPI = async (id: number) =>{
 }
 export const findMyListAPI = async (id:number) =>{    
     try{                                                        
-        const response = await instance.get('/article/myList',{
+        const response = await instance().get('/article/myList',{
             params: {id}
         })
         return response.data
@@ -52,7 +52,7 @@ export const findMyListAPI = async (id:number) =>{
 }
 export const saveArticleAPI = async (article:IArticle) =>{
     try{
-        const response = await instance.post('/article/save',article)
+        const response = await instance().post('/article/save',article)
         //Java 에서 Messenger.message에 값을 담음
         return response.data
     }catch(error){

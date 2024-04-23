@@ -11,6 +11,7 @@ import { existsUsernameMessage, getAuth } from "./components/user/service/user-s
 import { IUser } from "./components/user/model/user";
 import nookies, { parseCookies, setCookie } from 'nookies'
 import { jwtDecode } from "jwt-decode";
+import { url } from "inspector";
 
 export default function Home() {
   const router = useRouter();
@@ -92,14 +93,6 @@ export default function Home() {
     // dispatch(loginUser(user))
   }
 
-
-
-
-
-  useEffect(() => {
-    console.log("스프링에서 넘어온 정보 : " + message.message)
-  }, [message])
-
   // useEffect(() => {
   //   if (auth.message === 'SUCCESS') {
   //     setCookie({}, 'message', auth.message, { httpOnly: false, path: '/' })
@@ -115,17 +108,17 @@ export default function Home() {
   // }, [auth])
 
   return (<div className="text-center">
-    <div className="text-3xl font-bold underline">Welcom To React World !!!</div><br />
+    <div className="text-3xl font-bold underline">짱구야 놀자</div><br />
     <div className="flex items-center justify-center  w-full px-5 sm:px-0">
       <div className="flex bg-white rounded-lg shadow-lg border overflow-hidden max-w-sm lg:max-w-4xl w-full">
         <div
           className="hidden md:block lg:w-1/2 bg-cover bg-blue-700"
           style={{
-            backgroundImage: `url(https://www.tailwindtap.com//assets/components/form/userlogin/login_tailwindtap.jpg)`,
+            backgroundImage: 'url("https://i.pinimg.com/236x/59/5b/be/595bbe2f912b67cd578f201ce238eecc.jpg")',
           }}
         ></div>
         <div className="w-full p-8 lg:w-1/2">
-          <p className="text-xl text-gray-600 text-center">Welcome back!</p>
+          <p className="text-xl text-gray-600 text-center">짱구에게 자기소개!</p>
           <div className="mt-4">
             <label className="block text-gray-700 text-sm font-bold mb-2 text-left">
               ID : Century

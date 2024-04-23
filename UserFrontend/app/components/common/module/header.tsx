@@ -57,10 +57,10 @@ function Header() {
           {showProfile && 
             <div className="flex px-4 py-3 float-end">
               <span className="block text-sm text-gray-900 dark:text-white">
-                Bonnie Green
+                Shin jjang gu
               </span>
               <span className="block text-sm  text-gray-500 truncate dark:text-gray-400 mx-5">
-                name@flowbite.com
+                user@jjanggu.com
               </span>
               <span
                 onClick={logoutHandler}

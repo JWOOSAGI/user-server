@@ -3,7 +3,6 @@ import { IArticle } from "../model/article";
 import { findAllArticlesAPI, findArticleByIdAPI, findMyListAPI, saveArticleAPI} from "./article-api";
 import axios from "axios";
 import { API } from "@/app/components/common/enums/API";
-import AxiosConfig, { instance } from "@/app/components/common/configs/axios-config";
 
 export const findAllArticles: any = createAsyncThunk(
     'articles/findAllArticles',

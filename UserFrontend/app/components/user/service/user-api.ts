@@ -1,9 +1,9 @@
-import { instance } from "@/app/components/common/configs/axios-config"
+import instance from "../../common/configs/axios-config"
 import { IUser } from "../model/user"
 
 export const findAllUsersAPI = async (page: number) =>{
     try{
-        const response = await instance.get('/users/list',{
+        const response = await instance().get('/users/list',{
             params: {page, limit: 10}
         })
         return response.data
@@ -15,7 +15,7 @@ export const findAllUsersAPI = async (page: number) =>{
 
 export const findUserByIdAPI = async (id: number) =>{
     try{
-        const response = await instance.get('/users/detail',{
+        const response = await instance().get('/users/detail',{
             params: {id}
         })
         return response.data
@@ -28,7 +28,7 @@ export const findUserByIdAPI = async (id: number) =>{
 
 export const deleteUserByIdAPI = async (id: number) =>{
     try{
-        const response = await instance.delete('/users/detail',{
+        const response = await instance().delete('/users/detail',{
             params: {id}
         })
         return response.data
@@ -41,7 +41,7 @@ export const deleteUserByIdAPI = async (id: number) =>{
 
 export const loginUserAPI = async (user:IUser) =>{
     try{
-        const response = await instance.post('/users/login',user)
+        const response = await instance().post('/auth/login',user)
         //Java 에서 Messenger.message에 값을 담음
         return response.data
     }catch(error){
@@ -52,7 +52,7 @@ export const loginUserAPI = async (user:IUser) =>{
 
 export const existsUsernameAPI = async (username: string) =>{
     try{
-        const response = await instance.get('/users/exists-username',{
+        const response = await instance().get('/auth/exists-username',{
             params: {username}
         })
         return response.data
@@ -62,10 +62,9 @@ export const existsUsernameAPI = async (username: string) =>{
         return error
     }
 }
-export const logoutAPI
-= async () =>{
+export const logoutAPI = async () =>{
     try{
-        const response = await instance.get('/users/logout',{params: {}})
+        const response = await instance().get('/users/logout')
         console.log('로그아웃 결과 : '+response)
         return response.data
     }catch(error){

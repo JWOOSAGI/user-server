@@ -1,45 +1,27 @@
-import { Instagram } from '@mui/icons-material'
-import axios from 'axios'
-import { parseCookies } from 'nookies'
-import { config } from 'process'
+import axios, { AxiosInstance } from 'axios'
+import { parseCookies } from 'nookies';
 
-// export default function AxiosConfig(){
-//     return {
-//         headers: {
-//             "Cache-Control": "no-cache",
-//             "Content-Type": "application/json",
-//             Authorization: `Bearer blah ~`,
-//             "Access-Control-Allow-Origin": "*",
-//         }
-//     }
-// }
+export default function instance() {
+    const instance = axios.create({baseURL: process.env.NEXT_PUBLIC_API_URL})
+    setInterceptor(instance)
+    return instance
+}
 
-
-export const instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL })
-
-instance.interceptors.request.use(
-    (request) => {
-        const accessToken = parseCookies().accessToken;
-        console.log('Axios 인터셉터에서 쿠키에서 토큰 추출함')
-        request.headers['Content-Type'] = "application/json"
-        request.headers['Authorization'] = `Bearer blah ${accessToken}`
-        return request
-    },
-    (error) => {
-        console.log('Axios 인터셉터에서 발생한 에러 : ' + error)
+export const setInterceptor = (inputInstance:AxiosInstance) => {
+    inputInstance.interceptors.request.use(
+    (config) => {
+        config.headers["Content-Type"] = "application/json"
+        config.headers["Authorization"] = `Bearer ${parseCookies().accessToken}`
+        return config
+    }, (error) => {
+        console.log("AXIOS INTERSEPTOR ERROR 발생 : " + error)
         return Promise.reject(error)
-    }
-)
-
-instance.interceptors.response.use(
-    (response) => {
-        if (response.status === 404) {
-            console.log('Axios 인터셉터에서 발생한 에러로 토큰이 없어서 404 페이지로 넘어감')
+    })
+    inputInstance.interceptors.response.use(
+        (response) => {
+            if(response.status === 404) console.log("AXIOS INTERSEPTOR 404 에러")
+            return response
         }
-        return response
-    }
-)
-
-
-
-export default instance
+    )
+    return inputInstance
+}
