@@ -75,7 +75,8 @@ export default function Home() {
               console.log("서버에서 넘어온 토큰" + parseCookies().accessToken);
               console.log("토큰을 디코드한 내용 : ");
               console.log(jwtDecode<any>(parseCookies().accessToken));
-              router.push("/pages/board/list"); 
+              router.push("/pages/board/list");
+              // router.refresh();
           })
           .catch((err: any) => {console.log('로그인 실패') });
         }else{console.log('아이디가 존재하지 않습니다.')

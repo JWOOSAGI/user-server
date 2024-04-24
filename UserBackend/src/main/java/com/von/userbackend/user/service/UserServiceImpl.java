@@ -92,10 +92,11 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public MessengerVO login(UserDTO dto) {
-        User user = repository.findByUsername(dto.getUsername()).get();
-        Long userId = user.getId();
-        String accessToken = jwtProvider.createToken(entityToDTO(user));
-        boolean flag = dto.getPassword().equals(dto.getPassword());
+        var user = repository.findByUsername(dto.getUsername()).get();
+        var accessToken = jwtProvider.createToken(entityToDTO(user));
+        boolean flag = user.getPassword().equals(dto.getPassword());
+        repository.modifyTokenById(user.getId(),accessToken);
+        log.info(accessToken);
 
         // 토큰을 각 섹션(Header, Payload, Signature)으로 분할
         jwtProvider.printPayload(accessToken);
@@ -106,10 +107,13 @@ public class UserServiceImpl implements UserService {
                 .build();
 
     }
-
+    @Transactional
     @Override
-    public Boolean logout(Long id) {
-         throw new UnsupportedOperationException("Unimplemented method 'logout'");
+    public Boolean logout(String accessToken) {
+        Long id = 7L;
+        String deletedToken = "";
+        repository.modifyTokenById(id,deletedToken);
+        return repository.findById(id).get().getToken().equals("");
     }
 
     public MessengerVO findByUsername(String username) {

@@ -12,15 +12,25 @@ import { PG } from "@/app/components/common/enums/PG";
 import { IArticle } from "@/app/components/article/model/article";
 import { useDispatch } from "react-redux";
 import { saveArticle } from "@/app/components/article/service/article-service";
+import { title } from "process";
 // import React from "react";
 
 
 const RegisterPage: NextPage = () => {
+    const [content, setContent] = useState("")
+    const selectHandler = (e: any) => {
+        setArticle({
+            ...article,
+            boardId : e.target.value
+            
+        })
+    }
     const router = useRouter();
     const dispatch = useDispatch();
     const [article, setArticle] = useState({} as IArticle)
     const handleCancel = () => {
-        router.push(`${PG.ARTICLE}/list`)
+        // router.push(`${PG.ARTICLE}/list`)
+        console.log(article)
     }
     const handleInsertTitle = (e: any) => {
         setArticle({
@@ -41,16 +51,26 @@ const RegisterPage: NextPage = () => {
         router.push(`${PG.ARTICLE}/list`)
     }
 
+    const options = [
+
+        {id:1, title:"QnA", content:"QnA"},
+        {id:2, title:"리뷰게시판", content:"리뷰게시판"},
+        {id:3, title:"free", content:"자유게시판"},
+
+    ]
+
 
     return (<>
 
         <form className="max-w-sm mx-auto">
             <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> 게시판 선택 </label>
-            <select onChange={(e: any) => { console.log(e.target.value), setArticle({ ...article, boardId: (e.target.value) }) }} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+            <select onChange={selectHandler} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value={0}> 게시판을 선택해주세요. </option>
-                <option value={1}> QnA </option>
-                <option value={2}> Review </option>
+                {
+                    Iboa.map((item, index)=>(
+                        <option key={item.id} value={item.id}>{item.content}</option>
+                    ))
+                }
             </select><br />
         </form >
         <div className="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">

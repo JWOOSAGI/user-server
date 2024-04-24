@@ -24,7 +24,7 @@ export default function ArticleDetailPage (props:any){
             console.log('삭제 버튼 클릭')
         }
         const handleEditClick = () => {
-            console.log('삭제 버튼 클릭')
+            console.log('수정 버튼 클릭')
         }
    
 

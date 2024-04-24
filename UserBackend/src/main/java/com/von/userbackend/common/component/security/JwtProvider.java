@@ -75,8 +75,8 @@ public class JwtProvider {
 
     }
 
-    public Claims getPayload(String token) {
-        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload();
+    public Claims getPayload(String accessToken) {
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(accessToken).getPayload();
     }
 
 //    public UserDTO getUserDTO(HttpServletRequest request) {
