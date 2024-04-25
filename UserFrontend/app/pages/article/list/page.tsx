@@ -40,6 +40,8 @@ const ArticleListPage: NextPage = ({ data }: any) => {
         disableRowSelectionOnClick
       />}
     </Box>
+    <MoveButton text={'수정'} path={'/'}/>
+    <MoveButton text={'삭제'} path={'/'}/>
     <MoveButton text={'글쓰기'} path={`${PG.ARTICLE}/save`}/>
   </>)
 }

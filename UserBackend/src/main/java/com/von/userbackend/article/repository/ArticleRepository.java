@@ -19,6 +19,8 @@ public interface ArticleRepository extends JpaRepository<Article, Long>{
     @Query("select a from articles a where a.board.id = :boardId")
     public List<Article> findAllByBoardId(@Param("boardId") Long boardId);
 
+//    List<Article> findAllByOrderByIdDesc();
+
 //    List<Article> findAllByBoardId(Long id);
 
 //    @Query("select id, title, content from articles where board = :board ")

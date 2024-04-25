@@ -14,11 +14,12 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String userName);
+//    List<User> findAllOrderById();
+
 
     @Modifying
     @Query("update users set token = :token where id = :id")
     public void modifyTokenById( @Param("id")Long id, @Param("token") String token);
-
 
 
 

@@ -14,21 +14,25 @@ import lombok.*;
 @Builder
 public class Article extends BaseEntity {
     @Id
-    @Column(name="id")
+    @Column(name="id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "title", length = 128)
     private String title;
+
+    @Column(name = "content", length = 1024)
     private String content;
     //    private Long writer;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_id")
+    @JoinColumn(name = "board_id", nullable = true)
     private Board board;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = true)
     private User writer;
 
     public static Article of(String title,String content){

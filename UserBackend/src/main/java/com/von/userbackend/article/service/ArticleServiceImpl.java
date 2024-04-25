@@ -19,7 +19,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public MessengerVO save(ArticleDTO t) {
-        entityToDTO((repo.save(dtoToEntity(t))));
+        entityToDTO(repo.save(dtoToEntity(t)));
         return new MessengerVO();
     }
     @Override

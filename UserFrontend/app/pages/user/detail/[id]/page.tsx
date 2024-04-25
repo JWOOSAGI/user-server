@@ -44,6 +44,6 @@ export default function UserDetailPage (props:any) {
     )}
 
     <Button variant="outlined" onClick={handleEditClick}>수정</Button>
-    <Button variant="outlined" onClick={handleDeleteClick}>삭제</Button>
+    <Button variant="outlined" onClick={handleDeleteClick}>탈퇴</Button>
     </>)
 }

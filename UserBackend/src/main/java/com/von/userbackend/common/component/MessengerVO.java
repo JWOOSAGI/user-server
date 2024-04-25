@@ -15,4 +15,5 @@ public class MessengerVO {
     private String message;
     private int status;
     private String accessToken;
+    private Long id;
 }

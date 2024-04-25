@@ -54,9 +54,12 @@ export const saveArticleAPI = async (article:IArticle) =>{
     try{
         const response = await instance().post('/article/save',article)
         //Java 에서 Messenger.message에 값을 담음
+        console.log(response.data)
+        console.log(article.boardId)
         return response.data
     }catch(error){
         console.log(error)
         return error
     }
+    
 }

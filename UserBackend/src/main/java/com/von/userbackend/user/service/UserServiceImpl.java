@@ -96,10 +96,10 @@ public class UserServiceImpl implements UserService {
         var accessToken = jwtProvider.createToken(entityToDTO(user));
         boolean flag = user.getPassword().equals(dto.getPassword());
         repository.modifyTokenById(user.getId(),accessToken);
-        log.info(accessToken);
 
         // 토큰을 각 섹션(Header, Payload, Signature)으로 분할
         jwtProvider.printPayload(accessToken);
+
 
         return MessengerVO.builder()
                 .message(flag ? "SUCCESS" : "FAILURE")
